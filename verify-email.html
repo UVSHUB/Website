@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | Nutzy Craft</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <style>
+        body {
+            background-color: #FFF9F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .auth-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .otp-input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 60px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            color: #1a237e;
+            transition: 0.3s;
+        }
+
+        .otp-input:focus {
+            border-color: #ffb74d;
+            border: 2px solid #ffb74d;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(255, 183, 77, 0.2);
+        }
+
+        .resend-text {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 1;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: #FFF3E0;
+            top: -50px;
+            right: -50px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: #E3F2FD;
+            bottom: -50px;
+            left: -50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="auth-card">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="logo.jpg" alt="Logo" style="width: 60px; border-radius: 50%; margin-bottom: 20px;">
+        </a>
+        <h2 style="color: #1a237e; margin-bottom: 10px; font-weight: 800;">Verify Your Email 📧</h2>
+        <p style="color: #666; font-size: 0.95rem;">We've sent a 4-digit verification code to your email. Please enter
+            it below.</p>
+
+        <form id="verify-form">
+            <div class="otp-input-group">
+                <input type="text" class="otp-input" maxlength="1" required>
+                <input type="text" class="otp-input" maxlength="1" required>
+                <input type="text" class="otp-input" maxlength="1" required>
+                <input type="text" class="otp-input" maxlength="1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary"
+                style="width: 100%; padding: 14px; background: #ffb74d; color: white; border-radius: 12px; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer;">
+                Verify & Proceed
+            </button>
+        </form>
+
+        <p class="resend-text" style="margin-top: 20px;">
+            Didn't receive the code? <a href="#" style="color: #ffb74d; font-weight: 700;">Resend in 30s</a>
+        </p>
+    </div>
+
+    <script>
+        // Auto-focus next input
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Demo Verification Logic
+        document.getElementById('verify-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let code = '';
+            inputs.forEach(input => code += input.value);
+
+            if (code === '1234') { // Demo code
+                alert('Email Verified Successfully!');
+                // Logic to redirect based on user type (simplified for demo)
+                window.location.href = 'freelancer-dashboard.html';
+            } else {
+                alert('Invalid Code! Try 1234');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
