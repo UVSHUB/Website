@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Freelancers | Nutzy Craft</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar glass-panel">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.jpg" alt="Nutzy Craft Logo" class="logo-img">
+                Nutzy Craft
+            </a>
+            <div class="nav-links">
+                <a href="post-job.html">Post a Job</a>
+                <a href="find-freelancer.html" style="color: var(--primary);">Find Talent</a>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-secondary">Log In</a>
+                <a href="register.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="hero-title">Hire Top Talent</h1>
+            <p class="hero-subtitle">Search for the perfect expert for your project.</p>
+
+            <div class="search-bar-container">
+                <input type="text" class="search-input" placeholder="Try 'Logo Design' or 'Python Developer'">
+                <button class="btn btn-primary search-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </div>
+
+            <div class="skills-tags" style="margin-top: 20px;">
+                <span class="skill-tag" style="background: white; border: 1px solid var(--primary);">Popular:</span>
+                <span class="skill-tag">Web Design</span>
+                <span class="skill-tag">Copywriting</span>
+                <span class="skill-tag">SEO</span>
+                <span class="skill-tag">Mobile Apps</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="freelancer-grid">
+            <!-- Freelancer 1 -->
+            <div class="glass-card freelancer-card">
+                <img src="https://ui-avatars.com/api/?name=Alice+Smith&background=D4B69D&color=fff"
+                    class="freelancer-avatar">
+                <h3 class="freelancer-name">Alice Smith</h3>
+                <p class="freelancer-title">Senior UI/UX Designer</p>
+                <div class="freelancer-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(4.9)</span>
+                </div>
+                <div class="skills-tags">
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Adobe XD</span>
+                    <span class="skill-tag">Prototyping</span>
+                </div>
+                <div class="freelancer-rate">$45 / hr</div>
+                <button class="btn btn-secondary" style="width: 100%;">View Profile</button>
+            </div>
+
+            <!-- Freelancer 2 -->
+            <div class="glass-card freelancer-card">
+                <img src="https://ui-avatars.com/api/?name=John+Doe&background=A8D0E6&color=fff"
+                    class="freelancer-avatar">
+                <h3 class="freelancer-name">John Doe</h3>
+                <p class="freelancer-title">Full Stack Developer</p>
+                <div class="freelancer-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <span>(4.2)</span>
+                </div>
+                <div class="skills-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">MongoDB</span>
+                </div>
+                <div class="freelancer-rate">$60 / hr</div>
+                <button class="btn btn-secondary" style="width: 100%;">View Profile</button>
+            </div>
+
+            <!-- Freelancer 3 -->
+            <div class="glass-card freelancer-card">
+                <img src="https://ui-avatars.com/api/?name=Emma+W&background=B7D9AE&color=fff"
+                    class="freelancer-avatar">
+                <h3 class="freelancer-name">Emma Watson</h3>
+                <p class="freelancer-title">Content Writer</p>
+                <div class="freelancer-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <span>(5.0)</span>
+                </div>
+                <div class="skills-tags">
+                    <span class="skill-tag">SEO</span>
+                    <span class="skill-tag">Blogs</span>
+                    <span class="skill-tag">Creative Writing</span>
+                </div>
+                <div class="freelancer-rate">$30 / hr</div>
+                <button class="btn btn-secondary" style="width: 100%;">View Profile</button>
+            </div>
+
+            <!-- Freelancer 4 -->
+            <div class="glass-card freelancer-card">
+                <img src="https://ui-avatars.com/api/?name=David+K&background=ffb7b2&color=fff"
+                    class="freelancer-avatar">
+                <h3 class="freelancer-name">David Kim</h3>
+                <p class="freelancer-title">Mobile App Dev</p>
+                <div class="freelancer-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span>(4.7)</span>
+                </div>
+                <div class="skills-tags">
+                    <span class="skill-tag">Flutter</span>
+                    <span class="skill-tag">Swift</span>
+                    <span class="skill-tag">Kotlin</span>
+                </div>
+                <div class="freelancer-rate">$55 / hr</div>
+                <button class="btn btn-secondary" style="width: 100%;">View Profile</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 80px;">
+            <button class="btn btn-outline">Load More Talent</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
