@@ -1,0 +1,30 @@
+package com.nutzycraft.backend.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.List;
+
+@Entity
+@Data
+@Table(name = "freelancers")
+public class Freelancer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String bio;
+
+    private Double hourlyRate;
+
+    @ElementCollection
+    private List<String> skills;
+
+    private Double rating = 0.0;
+}

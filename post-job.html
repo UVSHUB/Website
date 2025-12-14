@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job | Nutzy Craft</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar glass-panel">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.jpg" alt="Nutzy Craft Logo" class="logo-img">
+                Nutzy Craft
+            </a>
+            <div class="nav-links">
+                <a href="find-freelancer.html">Find Freelancers</a>
+            </div>
+            <div class="nav-actions">
+                <div class="profile-pill" style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-weight: 700; color: var(--primary);">Hi, Client!</span>
+                    <img src="https://ui-avatars.com/api/?name=Client&background=D4B69D&color=fff"
+                        style="width: 32px; height: 32px; border-radius: 50%;">
+                </div>
+            </div>
+            <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="hero-title" style="font-size: 3rem;">Post a New Project</h1>
+            <p class="hero-subtitle">Connect with top-tier talent in minutes.</p>
+        </div>
+    </div>
+
+    <div class="container post-job-container">
+        <form class="glass-card" style="padding: 40px; margin-bottom: 80px;">
+            <div class="form-section">
+                <h3>1. Project Details</h3>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label">Project Title</label>
+                    <input type="text" class="form-input" placeholder="e.g. Build a Nutzy Craft Website">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select class="form-select">
+                        <option>Web Development</option>
+                        <option>Graphic Design</option>
+                        <option>Content Writing</option>
+                        <option>Digital Marketing</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>2. Description</h3>
+                <div class="form-group">
+                    <label class="form-label">Describe your project</label>
+                    <textarea class="form-textarea" placeholder="Provide details about what you need..."></textarea>
+                </div>
+                <div class="form-group" style="margin-top: 20px;">
+                    <label class="form-label">Attachments</label>
+                    <div class="file-upload">
+                        <i class="fa-solid fa-cloud-arrow-up"
+                            style="font-size: 2rem; color: var(--primary); margin-bottom: 10px;"></i>
+                        <p>Drag & drop files or <span style="color: var(--primary); font-weight: 700;">Browse</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>3. Budget & Timeline</h3>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label class="form-label">Estimated Budget ($)</label>
+                    <input type="number" class="form-input" placeholder="500">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Project Duration</label>
+                    <select class="form-select">
+                        <option>Less than 1 week</option>
+                        <option>1 to 4 weeks</option>
+                        <option>1 to 3 months</option>
+                        <option>More than 3 months</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-top: 40px;">
+                <button type="button" class="btn btn-outline" style="margin-right: 10px;">Save Draft</button>
+                <button type="button" class="btn btn-primary">Post Project Now</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
