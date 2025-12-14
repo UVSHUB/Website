@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Nutzy Craft</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        <style>body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .checkout-container {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .checkout-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #1a237e;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .payment-method:hover,
+        .payment-method.active {
+            border-color: #1a237e;
+            background: #e8eaf6;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #eee;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1a237e;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #2e7d32;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="checkout-container">
+        <!-- Left: Payment Form -->
+        <div class="checkout-card">
+            <h2 class="section-title"><i class="fa-solid fa-credit-card"></i> Payment Details</h2>
+
+            <div class="payment-methods">
+                <div class="payment-method active">
+                    <i class="fa-solid fa-credit-card" style="color: #1a237e;"></i> Credit Card
+                </div>
+                <div class="payment-method">
+                    <i class="fa-brands fa-paypal" style="color: #003087;"></i> PayPal
+                </div>
+            </div>
+
+            <form id="payment-form">
+                <div class="form-group">
+                    <label>Cardholder Name</label>
+                    <input type="text" class="form-input" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <div style="position: relative;">
+                        <input type="text" class="form-input" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                        <i class="fa-brands fa-cc-visa"
+                            style="position: absolute; right: 15px; top: 15px; font-size: 1.5rem; color: #1a237e;"></i>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" class="form-input" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="password" class="form-input" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="checkbox" id="save-card" style="margin-top: 4px;">
+                    <label for="save-card" style="font-weight: 400; color: #666; font-size: 0.9rem;">Save card securely
+                        for future payments</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; padding: 15px; background: #1a237e; border-radius: 12px; font-size: 1.1rem; font-weight: 700; color: white; border: none; cursor: pointer;">
+                    Pay Now <span id="pay-btn-amount">$1,260.00</span>
+                </button>
+
+                <div class="secure-badge">
+                    <i class="fa-solid fa-shield-cat"></i> 256-bit SSL Encrypted Payment
+                </div>
+            </form>
+        </div>
+
+        <!-- Right: Order Summary -->
+        <div class="checkout-card" style="height: fit-content;">
+            <h2 class="section-title"><i class="fa-solid fa-cart-shopping"></i> Order Summary</h2>
+
+            <div
+                style="display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                <img src="https://ui-avatars.com/api/?name=Sayur+Thejan&background=random"
+                    style="width: 50px; height: 50px; border-radius: 10px;">
+                <div>
+                    <div style="font-weight: 700;">Full Stack Development</div>
+                    <div style="font-size: 0.9rem; color: #666;">Freelancer: Sayur Thejan</div>
+                </div>
+            </div>
+
+            <div class="order-summary-item">
+                <span>Subtotal</span>
+                <span>$1,200.00</span>
+            </div>
+            <div class="order-summary-item">
+                <span>Service Fee (5%)</span>
+                <span>$60.00</span>
+            </div>
+            <div class="order-summary-item" style="color: #2e7d32;">
+                <span>Discount</span>
+                <span>-$0.00</span>
+            </div>
+
+            <div class="total-row">
+                <span>Total</span>
+                <span>$1,260.00</span>
+            </div>
+
+            <div
+                style="margin-top: 20px; background: #FFF9F5; padding: 15px; border-radius: 8px; font-size: 0.85rem; color: #666; line-height: 1.5;">
+                <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> Funds will be held in escrow
+                until you approve the work milestones.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            // Loading State
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+            btn.style.opacity = '0.8';
+
+            setTimeout(() => {
+                alert('Payment Successful! The project has started.');
+                window.location.href = 'client-track-job.html';
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
