@@ -133,7 +133,7 @@
     <div class="split-container">
         <!-- Left Side: Auth Form -->
         <div class="auth-side">
-            <a href="index.html" class="admin-nav-logo">
+            <a href="/" class="admin-nav-logo">
                 <img src="logo.jpg" alt="Logo" style="width: 32px; border-radius: 50%;">
                 Nutzy Admin
             </a>
@@ -176,7 +176,7 @@
             </form>
 
             <p style="margin-top: 20px; text-align: center; color: #666; font-size: 0.95rem;">
-                Already have an account? <a href="admin-login.html" style="color: #1a237e; font-weight: 700;">Log In</a>
+                Already have an account? <a href="/admin-login" style="color: #1a237e; font-weight: 700;">Log In</a>
             </p>
         </div>
 
@@ -202,7 +202,7 @@
             // Simple demo check for secret key
             if (secretKey === 'NUTZY2025') {
                 alert('Registration Successful! Please log in.');
-                window.location.href = 'admin-login.html';
+                window.location.href = '/admin-login';
             } else {
                 alert('Invalid Secret Key! Authorization failed.');
             }

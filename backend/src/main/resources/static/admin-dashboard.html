@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
     <script src="script.js" defer></script>
+    <script src="dashboard-api.js" defer></script>
     <style>
         /* Admin Specific Overrides */
         .sidebar-link.active {
@@ -114,7 +115,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Total Users</h4>
-                        <div class="stat-value">1,245</div>
+                        <div class="stat-value" id="stat-total-users">...</div>
                         <div style="font-size: 0.8rem; color: #4caf50;"><i class="fa-solid fa-arrow-up"></i> 12% this
                             week</div>
                     </div>
@@ -125,7 +126,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Active Jobs</h4>
-                        <div class="stat-value">85</div>
+                        <div class="stat-value" id="stat-active-jobs">...</div>
                         <div style="font-size: 0.8rem; color: #4caf50;"><i class="fa-solid fa-arrow-up"></i> 5 new today
                         </div>
                     </div>
@@ -136,7 +137,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Revenue (Net)</h4>
-                        <div class="stat-value">$15,400</div>
+                        <div class="stat-value" id="stat-revenue">...</div>
                         <div style="font-size: 0.8rem; color: #666;">This Month</div>
                     </div>
                 </div>
@@ -146,7 +147,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Disputes</h4>
-                        <div class="stat-value">3</div>
+                        <div class="stat-value" id="stat-disputes">...</div>
                         <div style="font-size: 0.8rem; color: #D32F2F;">Action Required</div>
                     </div>
                 </div>

@@ -118,7 +118,9 @@
         </form>
 
         <p class="resend-text" style="margin-top: 20px;">
-            Didn't receive the code? <a href="#" style="color: #ffb74d; font-weight: 700;">Resend in 30s</a>
+            Didn't receive the code?
+            <span id="countdown-text">Resend in <span id="timer">30</span>s</span>
+            <a href="#" id="resend-link" style="color: #ffb74d; font-weight: 700; display: none;">Resend Code</a>
         </p>
     </div>
 
@@ -161,13 +163,54 @@
                 if (response.ok) {
                     alert('Email Verified Successfully!');
                     localStorage.removeItem('pendingEmail'); // Cleanup
-                    window.location.href = 'freelancer-dashboard.html';
+                    const redirect = localStorage.getItem('redirectAfterVerify') || 'freelancer-dashboard.html';
+                    localStorage.removeItem('redirectAfterVerify');
+                    window.location.href = redirect;
                 } else {
                     alert('Invalid Verification Code');
                 }
             } catch (error) {
                 console.error('Error:', error);
                 alert('Verification failed. Check console.');
+            }
+        });
+
+        // Resend Logic
+        const timerSpan = document.getElementById('timer');
+        const countdownText = document.getElementById('countdown-text');
+        const resendLink = document.getElementById('resend-link');
+        let timeLeft = 30;
+
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            timerSpan.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                countdownText.style.display = 'none';
+                resendLink.style.display = 'inline';
+            }
+        }, 1000);
+
+        resendLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = localStorage.getItem('pendingEmail');
+            if (!email) return;
+
+            try {
+                const response = await fetch('http://localhost:8080/api/auth/resend-verification', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                if (response.ok) {
+                    alert('Verification code resent!');
+                    location.reload();
+                } else {
+                    alert('Failed to resend code');
+                }
+            } catch (error) {
+                console.error('Error:', error);
             }
         });
     </script>
