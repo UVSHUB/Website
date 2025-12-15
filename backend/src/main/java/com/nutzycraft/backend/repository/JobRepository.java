@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
     List<Job> findByCategory(String category);
+
+    long countByStatus(String status);
 }

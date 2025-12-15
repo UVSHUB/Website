@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join as a Freelancer | Nutzy Craft</title>
+    <title>Login | Nutzy Craft</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -39,80 +39,103 @@
     <div class="auth-page">
         <div class="glass-card auth-card">
             <div class="auth-header">
-                <h2>Join as a Freelancer</h2>
-                <p>Start your journey and showcase your skills.</p>
+                <h2>Welcome Back!</h2>
+                <p>Login to continue your craft journey.</p>
             </div>
 
             <form class="auth-form">
-                <div class="form-group">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" class="form-input" placeholder="John Doe">
-                </div>
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
                     <input type="email" class="form-input" placeholder="you@example.com">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-input" placeholder="Create a password">
+                    <input type="password" class="form-input" placeholder="Enter your password">
                 </div>
 
                 <div class="auth-options">
                     <label class="checkbox-container">
                         <input type="checkbox">
                         <span class="custom-checkbox"></span>
-                        I agree to Terms & Privacy
+                        Remember me
                     </label>
+                    <a href="/forgot-password" style="color: var(--primary);">Forgot Password?</a>
                 </div>
 
-                <button type="button" class="btn btn-primary" id="register-btn">Create Account</button>
+                <button type="button" class="btn btn-primary" id="login-btn">Log In</button>
             </form>
 
             <script>
-                document.getElementById('register-btn').addEventListener('click', async () => {
+                document.getElementById('login-btn').addEventListener('click', async () => {
                     const inputs = document.querySelectorAll('.form-input');
-                    const fullName = inputs[0].value;
-                    const email = inputs[1].value;
-                    const password = inputs[2].value;
+                    const email = inputs[0].value;
+                    const password = inputs[1].value;
 
-                    if (!fullName || !email || !password) {
-                        alert('Please fill in all fields');
+                    if (!email || !password) {
+                        alert('Please enter email and password');
                         return;
                     }
 
                     try {
-                        const response = await fetch('http://localhost:8080/api/auth/register-freelancer', {
+                        const response = await fetch('/api/auth/login', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ fullName, email, password })
+                            body: JSON.stringify({ email, password })
                         });
 
                         if (response.ok) {
-                            localStorage.setItem('pendingEmail', email);
-                            window.location.href = 'verify-email.html';
+                            const user = await response.json();
+                            // Redirect based on role
+                            if (user.role === 'FREELANCER') {
+                                window.location.href = "freelancer-dashboard.html";
+                            } else {
+                                window.location.href = "client-dashboard.html";
+                            }
                         } else {
-                            alert('Registration failed');
+                            alert('Invalid credentials or unverified email.');
                         }
                     } catch (error) {
                         console.error('Error:', error);
-                        alert('Something went wrong');
+                        alert('Login failed');
                     }
                 });
             </script>
 
-            <div class="social-login">
-                <p style="margin-bottom: 16px; font-size: 0.9rem;">Or sign up with</p>
-                <button class="social-btn">
-                    <i class="fa-brands fa-google google-icon"></i> Google
-                </button>
+            <div id="g_id_onload"
+                data-client_id="395279487546-l48b8apos5dpa0fctvltp6hhsfl10o83.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse">
             </div>
+            <div class="g_id_signin" data-type="standard"></div>
 
-            <p style="margin-top: 20px;">Already have an account? <a href="login.html"
-                    style="color: var(--primary); font-weight: 700;">Log In</a></p>
+            <script>
+                function handleCredentialResponse(response) {
+                    // Start with generic role, backend will find existing user
+                    const role = "CLIENT";
+                    fetch("http://localhost:8080/api/auth/google", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ token: response.credential, role: role })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            // Redirect based on role
+                            if (data.role === 'FREELANCER') {
+                                window.location.href = "freelancer-dashboard.html";
+                            } else {
+                                window.location.href = "client-dashboard.html";
+                            }
+                        })
+                        .catch(console.error);
+                }
+            </script>
+            <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+            <p style="margin-top: 20px;">Don't have an account? <a href="/register"
+                    style="color: var(--primary); font-weight: 700;">Sign Up</a></p>
 
             <div style="margin-top: 20px; text-align: center;">
                 <a href="index.html"
-                    style="color: var(--text-muted); font-size: 0.9rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    style="color: var(--text-muted); font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px;">
                     <i class="fa-solid fa-arrow-left"></i> Return to Home Page
                 </a>
             </div>

@@ -69,21 +69,21 @@
 <body>
     <nav class="navbar glass-panel">
         <div class="container nav-container">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="logo.jpg" alt="Nutzy Craft Logo" class="logo-img">
                 Nutzy Craft
             </a>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
-                <a href="portfolio.html">Portfolio</a>
-                <a href="how-it-works.html">How it Works</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html" style="color: var(--primary);">Contact Us</a>
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/portfolio">Portfolio</a>
+                <a href="/how-it-works">How it Works</a>
+                <a href="/about">About Us</a>
+                <a href="/contact" style="color: var(--primary);">Contact Us</a>
             </div>
             <div class="nav-actions">
-                <a href="login.html" class="btn btn-secondary">Log In</a>
-                <a href="register.html" class="btn btn-primary">Join Now</a>
+                <a href="/login" class="btn btn-secondary">Log In</a>
+                <a href="/register" class="btn btn-primary">Join Now</a>
             </div>
             <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
@@ -105,13 +105,12 @@
             <div class="contact-grid">
                 <!-- Contact Form -->
                 <div class="glass-card">
-                    <form class="auth-form"
-                        onsubmit="event.preventDefault(); alert('We have received your request. A support agent will contact you shortly.');">
+                    <form class="auth-form" id="contactForm">
                         <h3 style="margin-bottom: 20px; color: var(--primary);">Submit a Request</h3>
 
                         <div class="form-group">
                             <label class="form-label">I am a...</label>
-                            <select class="form-input" style="background: white;" required>
+                            <select class="form-input" style="background: white;" id="role" required>
                                 <option value="" disabled selected>Select your role</option>
                                 <option value="client">Client / Business</option>
                                 <option value="freelancer">Freelancer / Talent</option>
@@ -121,15 +120,15 @@
 
                         <div class="form-group">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-input" placeholder="Your Name" required>
+                            <input type="text" class="form-input" placeholder="Your Name" id="name" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="your@email.com" required>
+                            <input type="email" class="form-input" placeholder="your@email.com" id="email" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Subject Category</label>
-                            <select class="form-input" style="background: white;" required>
+                            <select class="form-input" style="background: white;" id="category" required>
                                 <option value="general">General Inquiry</option>
                                 <option value="billing">Billing / Payments</option>
                                 <option value="technical">Technical Support</option>
@@ -138,11 +137,59 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Message</label>
-                            <textarea class="form-textarea" placeholder="How can we help you?" required></textarea>
+                            <textarea class="form-textarea" placeholder="How can we help you?" id="message"
+                                required></textarea>
                         </div>
+                        <div id="formMessage" style="margin-bottom: 15px; text-align: center;"></div>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                     </form>
                 </div>
+
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+                        e.preventDefault();
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalBtnText = submitBtn.innerText;
+                        submitBtn.innerText = 'Sending...';
+                        submitBtn.disabled = true;
+
+                        const formData = {
+                            role: document.getElementById('role').value,
+                            name: document.getElementById('name').value,
+                            email: document.getElementById('email').value,
+                            category: document.getElementById('category').value,
+                            message: document.getElementById('message').value
+                        };
+
+                        try {
+                            const response = await fetch('/api/contact', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(formData)
+                            });
+
+                            const data = await response.json();
+                            const messageDiv = document.getElementById('formMessage');
+
+                            if (response.ok) {
+                                messageDiv.style.color = 'green';
+                                messageDiv.innerText = data.message;
+                                this.reset();
+                            } else {
+                                messageDiv.style.color = 'red';
+                                messageDiv.innerText = data.error || 'Something went wrong.';
+                            }
+                        } catch (error) {
+                            document.getElementById('formMessage').style.color = 'red';
+                            document.getElementById('formMessage').innerText = 'Network error. Please try again.';
+                        } finally {
+                            submitBtn.innerText = originalBtnText;
+                            submitBtn.disabled = false;
+                        }
+                    });
+                </script>
 
                 <!-- Contact Info -->
                 <div class="contact-info-box">
@@ -202,7 +249,7 @@
                     </div>
 
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
-                        <a href="admin-login.html" style="color: #666; font-size: 0.85rem; text-decoration: none;"><i
+                        <a href="/admin-login" style="color: #666; font-size: 0.85rem; text-decoration: none;"><i
                                 class="fa-solid fa-lock"></i> Staff Login</a>
                     </div>
 
@@ -227,7 +274,7 @@
                         goes unrealized.
                     </p>
                     <br>
-                    <a href="about.html" style="color: var(--primary); font-weight: 700;">Read More <i
+                    <a href="/about" style="color: var(--primary); font-weight: 700;">Read More <i
                             class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
@@ -236,11 +283,13 @@
                     <h3 class="footer-heading">QUICK LINKS</h3>
                     <div class="footer-line"></div>
                     <ul class="footer-service-list">
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="how-it-works.html">How It Works</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="legal.html">Terms & Privacy</a></li>
+                        <li><a href="/services">Services</a>
+                            <a href="/portfolio">Portfolio</a>
+                        </li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/legal">Terms & Privacy</a></li>
                     </ul>
                 </div>
 
