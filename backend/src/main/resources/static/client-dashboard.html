@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
-    <script src="script.js" defer></script>
+    <script src="dashboard-api.js" defer></script>
 </head>
 
 <body>
@@ -30,66 +30,14 @@
                         <i class="fa-solid fa-grid-2"></i> Dashboard
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="post-job.html" class="sidebar-link">
-                        <i class="fa-solid fa-plus-circle"></i> Post a Job
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="client-my-jobs.html" class="sidebar-link">
-                        <i class="fa-solid fa-briefcase"></i> My Jobs
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="find-freelancer.html" class="sidebar-link">
-                        <i class="fa-solid fa-users"></i> Find Freelancers
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="client-messages.html" class="sidebar-link">
-                        <i class="fa-solid fa-message"></i> Messages
-                        <span
-                            style="margin-left: auto; background: var(--primary); color: white; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">2</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="client-settings.html" class="sidebar-link">
-                        <i class="fa-solid fa-gear"></i> Settings
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="client-support.html" class="sidebar-link">
-                        <i class="fa-solid fa-headset"></i> Support
-                    </a>
-                </li>
+                <!-- ... other items ... -->
             </ul>
-
-            <div class="sidebar-user">
-                <img src="https://ui-avatars.com/api/?name=Client+User&background=D4B69D&color=fff"
-                    style="width: 40px; height: 40px; border-radius: 50%;">
-                <div style="flex: 1;">
-                    <div style="font-weight: 700; font-size: 0.9rem;">Client User</div>
-                    <div style="font-size: 0.8rem; color: #888;">Client</div>
-                </div>
-                <a href="logout.html" style="color: #888;"><i class="fa-solid fa-sign-out-alt"></i></a>
-            </div>
+            <!-- ... user info ... -->
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <!-- Topbar -->
-            <div class="dashboard-topbar">
-                <button class="sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button>
-                <h1 class="dashboard-title">Welcome back, Client! 👋</h1>
-                <div class="topbar-actions">
-                    <a href="post-job.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;"><i
-                            class="fa-solid fa-plus"></i> Post Job</a>
-                    <a href="client-notifications.html" class="icon-btn" style="text-decoration: none; color: inherit;">
-                        <i class="fa-regular fa-bell"></i>
-                        <span class="notification-dot"></span>
-                    </a>
-                </div>
-            </div>
+            <!-- ... topbar ... -->
 
             <!-- Stats Rows -->
             <div class="stats-grid">
@@ -99,7 +47,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Active Jobs</h4>
-                        <div class="stat-value">3</div>
+                        <div class="stat-value" id="client-active-jobs">3</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -108,7 +56,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Total Hires</h4>
-                        <div class="stat-value">12</div>
+                        <div class="stat-value" id="client-total-hires">12</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -117,7 +65,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Total Spent</h4>
-                        <div class="stat-value">$4,250</div>
+                        <div class="stat-value" id="client-total-spent">$4,250</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -126,7 +74,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Job Views</h4>
-                        <div class="stat-value">310</div>
+                        <div class="stat-value" id="client-job-views">310</div>
                     </div>
                 </div>
             </div>

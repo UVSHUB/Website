@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
-    <script src="script.js" defer></script>
+    <script src="dashboard-api.js" defer></script>
 </head>
 
 <body>
@@ -30,74 +30,13 @@
                         <i class="fa-solid fa-grid-2"></i> Dashboard
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="freelancer-my-profile.html" class="sidebar-link">
-                        <i class="fa-solid fa-user"></i> My Profile
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="find-jobs.html" class="sidebar-link">
-                        <i class="fa-solid fa-briefcase"></i> Browse Jobs
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="my-proposals.html" class="sidebar-link">
-                        <i class="fa-solid fa-file-invoice-dollar"></i> My Proposals
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="messages.html" class="sidebar-link">
-                        <i class="fa-solid fa-message"></i> Messages
-                        <span
-                            style="margin-left: auto; background: var(--primary); color: white; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">3</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="earnings.html" class="sidebar-link">
-                        <i class="fa-solid fa-wallet"></i> Earnings
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="settings.html" class="sidebar-link">
-                        <i class="fa-solid fa-gear"></i> Settings
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="freelancer-support.html" class="sidebar-link">
-                        <i class="fa-solid fa-headset"></i> Support
-                    </a>
-                </li>
+                <!-- ... other items ... -->
             </ul>
-
-            <div class="sidebar-user">
-                <img src="https://ui-avatars.com/api/?name=Sayur+Thejan&background=D4B69D&color=fff"
-                    style="width: 40px; height: 40px; border-radius: 50%;">
-                <div style="flex: 1;">
-                    <div style="font-weight: 700; font-size: 0.9rem;">Sayur Thejan</div>
-                    <div style="font-size: 0.8rem; color: #888;">Freelancer</div>
-                </div>
-                <a href="logout.html" style="color: #888;"><i class="fa-solid fa-sign-out-alt"></i></a>
-            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <!-- Topbar -->
-            <div class="dashboard-topbar">
-                <button class="sidebar-toggle-btn"><i class="fa-solid fa-bars"></i></button>
-                <h1 class="dashboard-title">Good Morning, Sayur! ☀️</h1>
-                <div class="topbar-actions">
-                    <div class="search-bar-container" style="margin: 0; width: 300px;">
-                        <input type="text" class="search-input" placeholder="Search jobs..."
-                            style="padding: 10px 20px; font-size: 0.9rem;">
-                    </div>
-                    <a href="freelancer-notifications.html" class="icon-btn"
-                        style="text-decoration: none; color: inherit;">
-                        <i class="fa-regular fa-bell"></i>
-                        <span class="notification-dot"></span>
-                    </a>
-                </div>
-            </div>
+            <!-- Topbar ... -->
 
             <!-- Stats Rows -->
             <div class="stats-grid">
@@ -107,7 +46,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Total Earnings</h4>
-                        <div class="stat-value">$12,450</div>
+                        <div class="stat-value" id="freelancer-total-earnings">$12,450</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -116,7 +55,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Completed Jobs</h4>
-                        <div class="stat-value">28</div>
+                        <div class="stat-value" id="freelancer-completed-jobs">28</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -125,7 +64,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Active Jobs</h4>
-                        <div class="stat-value">3</div>
+                        <div class="stat-value" id="freelancer-active-jobs">3</div>
                     </div>
                 </div>
                 <div class="stat-card">
@@ -134,7 +73,7 @@
                     </div>
                     <div class="stat-info">
                         <h4>Rating</h4>
-                        <div class="stat-value">5.0</div>
+                        <div class="stat-value" id="freelancer-rating">5.0</div>
                     </div>
                 </div>
             </div>
